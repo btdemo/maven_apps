@@ -1,30 +1,42 @@
 node {
    
-   stage('Code Checkout') { 
-     git credentialsId: 'githubID', url: 'https://github.com/itrainbatman/maven_apps.git' 
-    }
+   stage('checkoutcode') { 
+       git credentialsId: 'Git', url: 'https://github.com/btdemo/maven_apps.git'
+       
+   }
    stage('Build') {
-    withMaven(jdk: 'JDK-1.8', maven: 'Maven-3.6.1') {
-     sh 'mvn clean compile'
-      }
-    }
-   stage('Unit Test run') {
-    withMaven(jdk: 'JDK-1.8', maven: 'Maven-3.6.1') {
-     sh 'mvn test'
-      } 
-    }
-   stage('Packageto Jfrog') {
-    withMaven(jdk: 'JDK-1.8', maven: 'Maven-3.6.1') {
-     sh 'mvn package'
-      }
-    }
-   stage('Deploy to Dev') {
-     
-    }
-   stage('Deploy to Test') {
-     
-    }
-   stage('Deploy to Prod') {
-     
-    }
+       withMaven(jdk: 'JDK8.0', maven: 'Maven 3.6') {
+    sh 'mvn clean compile'
 }
+      
+   }
+   stage('unit test') {
+       withMaven(jdk: 'JDK8.0', maven: 'Maven 3.6') {
+    sh 'mvn test'
+}
+     
+     
+   }
+   stage('package') {
+       withMaven(jdk: 'JDK8.0', maven: 'Maven 3.6') {
+    sh 'mvn package'
+}
+     
+     
+   }
+
+    stage('deploy to Dev Env.') {
+     
+     
+   }
+   stage('deploy to Test Env.') {
+     
+     
+   }
+   stage('deploy to Prod Env.') {
+     
+     
+   }
+    
+}
+
